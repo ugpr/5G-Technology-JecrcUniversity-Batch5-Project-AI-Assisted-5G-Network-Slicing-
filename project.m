@@ -2,9 +2,9 @@ clc;
 clear;
 close all;
 
-%% =====================================================
+
 % AI-Assisted 5G Network Slicing using Q-Learning
-%% =====================================================
+
 
 %% PARAMETERS
 
@@ -45,9 +45,9 @@ throughput_history = zeros(episodes,1);
 delay_history = zeros(episodes,1);
 packetloss_history = zeros(episodes,1);
 
-%% =====================================================
+
 % TRAINING LOOP
-%% =====================================================
+
 
 for episode = 1:episodes
 
@@ -75,9 +75,9 @@ for episode = 1:episodes
 
     allocation = actions(action,:);
 
-    %% =================================================
+
     % NETWORK PERFORMANCE MODEL
-    %% =================================================
+   
 
     % Throughput
     throughput = ...
@@ -103,9 +103,9 @@ for episode = 1:episodes
         abs(allocation(1)-eMBB_load)*0.05 + ...
         abs(allocation(2)-URLLC_load)*0.08;
 
-    %% =================================================
+ 
     % REWARD FUNCTION
-    %% =================================================
+
 
     reward = ...
         throughput ...
@@ -128,9 +128,9 @@ for episode = 1:episodes
         trafficLevel(next_URLLC), ...
         trafficLevel(next_mMTC));
 
-    %% =================================================
+    
     % Q LEARNING UPDATE
-    %% =================================================
+
 
     Q(state,action) = Q(state,action) + ...
         alpha * (reward + ...
@@ -146,18 +146,18 @@ for episode = 1:episodes
 
 end
 
-%% =====================================================
+
 % RESULTS
-%% =====================================================
+
 
 disp('====================================');
 disp('FINAL Q TABLE');
 disp('====================================');
 disp(Q);
 
-%% =====================================================
+
 % PLOTS
-%% =====================================================
+
 
 % Reward Plot
 figure;
@@ -208,9 +208,9 @@ xlabel('Actions');
 ylabel('States');
 title('Q Table Heatmap');
 
-%% =====================================================
+
 % TESTING PHASE
-%% =====================================================
+
 
 disp('====================================');
 disp('TESTING TRAINED AGENT');
@@ -249,9 +249,9 @@ disp('====================================');
 disp('SIMULATION COMPLETED');
 disp('====================================');
 
-%% =====================================================
+
 % LOCAL FUNCTIONS
-%% =====================================================
+
 
 function level = trafficLevel(load)
 
